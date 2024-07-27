@@ -1,0 +1,43 @@
+I 7/21 Breakfast: rice porridge
+I 7/21 Lunch: sandwich
+I 7/21 Dinner: risotto
+
+I 7/22 Breakfast: cereal
+I 7/22 Lunch: lunch box
+I 7/22 Dinner: ramen
+
+I 7/23 Breakfast: steamed bun
+I 7/23 Lunch: curry rice
+I 7/23 Dinner: fried noodles
+
+I 7/24 Breakfast: congee
+I 7/24 Lunch: fried chicken
+I 7/24 Dinner: sushi
+
+I 7/25 Breakfast: pancake
+I 7/25 Lunch: baked bun
+I 7/25 Dinner: beef noodles
+
+I 7/26 Breakfast: steamed bun with egg
+I 7/26 Lunch: pizza
+I 7/26 Dinner: salad
+
+I 7/27 Breakfast: egg pancake
+I 7/27 Lunch: sushi roll
+I 7/27 Dinner: barbecue meat
+
+I 7/28 Breakfast: yogurt
+I 7/28 Lunch: wonton soup
+I 7/28 Dinner: Korean fried chicken
+
+I 7/29 Breakfast: muffin
+I 7/29 Lunch: steak
+I 7/29 Dinner: mapo tofu
+
+I 7/30 Breakfast: soy milk
+I 7/30 Lunch: roast meat
+I 7/30 Dinner: fried rice
+
+I 7/31 Breakfast: cookies
+I 7/31 Lunch: beef bowl
+I 7/31 Dinner: stir-fried rice cakes
