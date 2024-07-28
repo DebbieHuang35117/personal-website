@@ -28,3 +28,7 @@ The file `taiwan.txt` is generated from this [wiki page](https://zh.wikipedia.or
 ## Run the app
 
 To host the streamlit chat app locally, run `streamlit run ./app.py `
+
+## Example
+
+You could ask the question `請跟我介紹台灣的歷史` and observe the different answers.

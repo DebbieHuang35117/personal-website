@@ -2,7 +2,7 @@ import os
 import asyncio
 import streamlit as st
 from langchain_pinecone import PineconeVectorStore, PineconeEmbeddings
-from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain_openai import OpenAIEmbeddings
 
@@ -10,12 +10,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+llm = ChatOpenAI(
+    model="gpt-4o",
+    temperature=0,
+    max_tokens=200,
+    timeout=None,
+    max_retries=2,
+)
+
 async def get_answer_multilingual_e5(query: str) -> str:
     embeddings = PineconeEmbeddings(model="multilingual-e5-large")
     index_name = "sinica-rag-test-0730-multilingual-e5-large"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
-    llm = OpenAI(api_key=os.environ['OPENAI_API_KEY'], temperature=0.0,model="gpt-4o")
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
@@ -25,7 +32,6 @@ async def get_answer_text_embedding_3_large(query: str) -> str:
     index_name = "sinica-rag-test-0730-text-embedding-3-large"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
-    llm = OpenAI(api_key=os.environ['OPENAI_API_KEY'], temperature=0.0)
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
@@ -35,14 +41,12 @@ async def get_answer_text_embedding_3_small(query: str) -> str:
     index_name = "sinica-rag-test-0730-text-embedding-3-small"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
-    llm = OpenAI(api_key=os.environ['OPENAI_API_KEY'], temperature=0.0)
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
 
 async def get_answer_without_rag(query: str) -> str:
-    llm = OpenAI(api_key=os.environ['OPENAI_API_KEY'], temperature=0.0)
-    chain = load_qa_chain(llm, chain_type="map_reduce")
+    chain = load_qa_chain(llm)
     answer = await asyncio.to_thread(chain.run, input_documents=[], question=query)
     return answer
 
@@ -57,7 +61,7 @@ async def main(query: str):
     st.write(f'Answer (text-embedding-3-small): {answer_text_embedding_3_small}')
     st.write(f'Answer (without RAG): {answer_without_rag}')
 
-st.title('Query Answering Application')
+st.title('2024-sinica-medLLM-rag-prototype-chat')
 query = st.text_input('Enter your query:')
 
 if st.button('Get Answer'):
