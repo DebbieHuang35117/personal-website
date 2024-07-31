@@ -18,58 +18,74 @@ llm = ChatOpenAI(
     max_retries=2,
 )
 
+
 async def get_answer_multilingual_e5(query: str) -> str:
     embeddings = PineconeEmbeddings(model="multilingual-e5-large")
     index_name = "sinica-rag-test-0730-multilingual-e5-large"
-    vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
+    vectorstore = PineconeVectorStore(
+        index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
+
 
 async def get_answer_text_embedding_3_large(query: str) -> str:
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
     index_name = "sinica-rag-test-0730-text-embedding-3-large"
-    vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
+    vectorstore = PineconeVectorStore(
+        index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
 
+
 async def get_answer_text_embedding_3_small(query: str) -> str:
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     index_name = "sinica-rag-test-0730-text-embedding-3-small"
-    vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
+    vectorstore = PineconeVectorStore(
+        index_name=index_name, embedding=embeddings)
     docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
     return answer
+
 
 async def get_answer_without_rag(query: str) -> str:
     chain = load_qa_chain(llm)
     answer = await asyncio.to_thread(chain.run, input_documents=[], question=query)
     return answer
 
+
 async def main(query: str):
     answer_multilingual_e5 = await get_answer_multilingual_e5(query)
     answer_text_embedding_3_large = await get_answer_text_embedding_3_large(query)
     answer_text_embedding_3_small = await get_answer_text_embedding_3_small(query)
     answer_without_rag = await get_answer_without_rag(query)
-    
+
     st.write(f'Answer (multilingual-e5-large): {answer_multilingual_e5}')
-    st.write(f'Answer (text-embedding-3-large): {answer_text_embedding_3_large}')
-    st.write(f'Answer (text-embedding-3-small): {answer_text_embedding_3_small}')
+    st.write(
+        f'Answer (text-embedding-3-large): {answer_text_embedding_3_large}')
+    st.write(
+        f'Answer (text-embedding-3-small): {answer_text_embedding_3_small}')
     st.write(f'Answer (without RAG): {answer_without_rag}')
 
-    feedback_multilingual_e5 = st.slider('Rate the answer (multilingual-e5-large)', 0, 5, 3)
-    feedback_text_embedding_3_large = st.slider('Rate the answer (text-embedding-3-large)', 0, 5, 3)
-    feedback_text_embedding_3_small = st.slider('Rate the answer (text-embedding-3-small)', 0, 5, 3)
+    feedback_multilingual_e5 = st.slider(
+        'Rate the answer (multilingual-e5-large)', 0, 5, 3)
+    feedback_text_embedding_3_large = st.slider(
+        'Rate the answer (text-embedding-3-large)', 0, 5, 3)
+    feedback_text_embedding_3_small = st.slider(
+        'Rate the answer (text-embedding-3-small)', 0, 5, 3)
     feedback_without_rag = st.slider('Rate the answer (without RAG)', 0, 5, 3)
-    
+
     if st.button('Submit Feedback'):
-        st.write(f'Feedback (multilingual-e5-large): {feedback_multilingual_e5}')
-        st.write(f'Feedback (text-embedding-3-large): {feedback_text_embedding_3_large}')
-        st.write(f'Feedback (text-embedding-3-small): {feedback_text_embedding_3_small}')
+        st.write(
+            f'Feedback (multilingual-e5-large): {feedback_multilingual_e5}')
+        st.write(
+            f'Feedback (text-embedding-3-large): {feedback_text_embedding_3_large}')
+        st.write(
+            f'Feedback (text-embedding-3-small): {feedback_text_embedding_3_small}')
         st.write(f'Feedback (without RAG): {feedback_without_rag}')
 
 st.title('2024-sinica-medLLM-rag-prototype-chat')
