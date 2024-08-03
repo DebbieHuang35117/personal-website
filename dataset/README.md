@@ -4,6 +4,16 @@
 
 This folder contains a list of traditional chinese/healthcare-related datasets from publicly available sources.
 
+## Related Work
+
+1. [藥學．要學：AI驅動的個人化精準學習](https://g0v.hackmd.io/8PYVkjW_RuSGFlIYJnGKoA?view): 本案目標在創建台灣醫療產業的藥劑共通LLM語言：收集在台灣醫療產業中的各種文件轉換成大語言模型(LLM)訓練用的藥學資料集。並且開源用此資料集微調過大語言模型(LLM)。
+
+## Traditional Chinese Datasets
+
+1. [【g0v 零時小學校】繁體中文 AI 開源實踐計畫](https://sch001.g0v.tw/dash/brd/2024TC-AI-OS-Grant/list)：【零時小學校】繁體中文 AI 開源實踐計畫，將針對「繁體中文文本採集」、「Benchmark 台灣觀點的評測」、「繁體中文特用型語言模型，以法律、醫療、教育為主但不限」、「繁體中文為主的開源模型」、「多語言考慮：台語、客語、原住民語」五大主題進行徵件。
+
+2. [罕見疾病藥物資料庫暨線上通報系統/法規及相關下載](https://www.pharmaceutic.idv.tw/law_download.aspx)：
+
 ## Medical Datasets
 
 1. [MedQuAD: Medical Question Answering Dataset](https://github.com/abachaa/MedQuAD): MedQuAD includes 47,457 medical question-answer pairs created from 12 NIH websites (e.g. cancer.gov, niddk.nih.gov, GARD, MedlinePlus Health Topics).
