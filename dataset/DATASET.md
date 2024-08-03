@@ -8,6 +8,7 @@ info: 本署針對藥品安全警訊，必要時會發布藥品安全資訊風�
 url: https://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=53
 last updated: 2023-03-02 / 2024-08-03
 filesize: 644.6kB
+format: csv
 
 ## 全部藥品許可證資料集
 
@@ -15,6 +16,12 @@ info: 本資料集每週與藥證業務管理系統同步，藉此提供醫師�
 url: https://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=36
 last updated: 2024-07-25 / 2024-08-03
 filesize: 75.7MB
+format: csv
 
+## 罕見疾病藥物處方集
 
-
+info: 
+url: https://www.pharmaceutic.idv.tw/prescription_download.aspx
+last updated: 2024-05-24 / 2024-08-03
+filesize: 2.8MB
+format: pdf
