@@ -37,3 +37,39 @@ last updated: 2024-05-24 / 2024-08-03
 filesize: 2.8MB
 
 format: pdf
+
+## 藥品法規條文資料集
+
+info: 本資料集包含藥事法及其相關法規、藥害救濟法及其相關法規資料。
+
+url: https://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=66
+
+last updated: 2024/07/09
+
+filesize: 1.1MB
+
+format: csv
+
+## 醫療器材許可證資料集
+
+info: 本資料集提供醫療器材許可證資料，並每週與藥證業務管理系統同步，藉此提供醫師、藥師、醫護人員、業者、民眾等使用者使用。
+
+url: https://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=68
+
+last updated: 2024/08/02
+
+filesize: 28.3MB
+
+format: csv
+
+## 藥品外觀資料集
+
+info: 本資料集提供藥品外觀資料，並每週與藥證業務管理系統同步，藉此提供醫師、藥師、醫護人員、業者、民眾等使用者使用。
+
+url: https://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=42
+
+last updated: 2024/08/02
+
+filesize: 499KB
+
+format: csv
