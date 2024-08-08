@@ -72,12 +72,12 @@ async def main(query: str):
     st.write(f'Answer (without RAG): {answer_without_rag}')
 
     feedback_multilingual_e5 = st.slider(
-        'Rate the answer (multilingual-e5-large)', 0, 5, 3)
+        'Rate the answer (multilingual-e5-large)', 0, 10, 5)
     feedback_text_embedding_3_large = st.slider(
-        'Rate the answer (text-embedding-3-large)', 0, 5, 3)
+        'Rate the answer (text-embedding-3-large)', 0, 10, 5)
     feedback_text_embedding_3_small = st.slider(
-        'Rate the answer (text-embedding-3-small)', 0, 5, 3)
-    feedback_without_rag = st.slider('Rate the answer (without RAG)', 0, 5, 3)
+        'Rate the answer (text-embedding-3-small)', 0, 10, 5)
+    feedback_without_rag = st.slider('Rate the answer (without RAG)', 0, 10, 5)
 
     if st.button('Submit Feedback'):
         st.write(
