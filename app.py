@@ -71,13 +71,26 @@ async def main(query: str):
         f'Answer (text-embedding-3-small): {answer_text_embedding_3_small}')
     st.write(f'Answer (without RAG): {answer_without_rag}')
 
-    feedback_multilingual_e5 = st.slider(
-        'Rate the answer (multilingual-e5-large)', 0, 10, 5)
-    feedback_text_embedding_3_large = st.slider(
-        'Rate the answer (text-embedding-3-large)', 0, 10, 5)
-    feedback_text_embedding_3_small = st.slider(
-        'Rate the answer (text-embedding-3-small)', 0, 10, 5)
-    feedback_without_rag = st.slider('Rate the answer (without RAG)', 0, 10, 5)
+    feedback_multilingual_e5 = st.radio(
+        'Rate the answer (multilingual-e5-large)',
+        options=[i for i in range(11)],  # 0 to 10
+        index=5
+    )
+    feedback_text_embedding_3_large = st.radio(
+        'Rate the answer (text-embedding-3-large)',
+        options=[i for i in range(11)],  # 0 to 10
+        index=5
+    )
+    feedback_text_embedding_3_small = st.radio(
+        'Rate the answer (text-embedding-3-small)',
+        options=[i for i in range(11)],  # 0 to 10
+        index=5
+    )
+    feedback_without_rag = st.radio(
+        'Rate the answer (without RAG)',
+        options=[i for i in range(11)],  # 0 to 10
+        index=5
+    )
 
     if st.button('Submit Feedback'):
         st.write(
@@ -87,6 +100,17 @@ async def main(query: str):
         st.write(
             f'Feedback (text-embedding-3-small): {feedback_text_embedding_3_small}')
         st.write(f'Feedback (without RAG): {feedback_without_rag}')
+
+    # create a file to store the feedback
+    with open('feedback.txt', 'a') as f:
+        f.write(
+            f'Query: {query}\nAnswer (multilingual-e5-large): {answer_multilingual_e5}\nFeedback (multilingual-e5-large): {feedback_multilingual_e5}\n\n')
+        f.write(
+            f'Query: {query}\nAnswer (text-embedding-3-large): {answer_text_embedding_3_large}\nFeedback (text-embedding-3-large): {feedback_text_embedding_3_large}\n\n')
+        f.write(
+            f'Query: {query}\nAnswer (text-embedding-3-small): {answer_text_embedding_3_small}\nFeedback (text-embedding-3-small): {feedback_text_embedding_3_small}\n\n')
+        f.write(
+            f'Query: {query}\nAnswer (without RAG): {answer_without_rag}\nFeedback (without RAG): {feedback_without_rag}\n\n')
 
 st.title('2024-sinica-medLLM-rag-prototype-chat')
 query = st.text_input('Enter your query:')
