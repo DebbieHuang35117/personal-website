@@ -6,7 +6,7 @@ This documentation records the info of the collected dataset.
 
 info: MedQuAD includes 47,457 medical question-answer pairs created from 12 NIH websites (e.g. cancer.gov, niddk.nih.gov, GARD, MedlinePlus Health Topics). The collection covers 37 question types (e.g. Treatment, Diagnosis, Side Effects) associated with diseases, drugs and other medical entities such as tests.
 
-Get rid of QA pair with only question no answer, ~~there's Approximatly 11k left~~
+Get rid of QA pair with only question no answer, there's Approximatly 11k left
 
 collected from [here](https://github.com/abachaa/MedQuAD)
 
