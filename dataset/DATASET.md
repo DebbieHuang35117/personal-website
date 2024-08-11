@@ -6,7 +6,7 @@ This documentation records the info of the collected dataset.
 
 info: MedQuAD includes 47,457 medical question-answer pairs created from 12 NIH websites (e.g. cancer.gov, niddk.nih.gov, GARD, MedlinePlus Health Topics). The collection covers 37 question types (e.g. Treatment, Diagnosis, Side Effects) associated with diseases, drugs and other medical entities such as tests.
 
-Get rid of QA pair with only question no answer, ~~there's Approximatly 11k left~~ file size is way too big, so only upload 50000
+Get rid of QA pair with only question no answer, ~~there's Approximatly 11k left~~
 
 collected from [here](https://github.com/abachaa/MedQuAD)
 
@@ -19,6 +19,8 @@ info: We collected around 1B words from three sources related to the medical dom
 (ii) EMEA is an English-Spanish parallel corpus with documents provided by the European Medicines Agency (Tiedemann, 2012)
 
 (iii) PubMed (National Library of Medicine, 2022b), which contains data from various sources such as MEDLINE, life science journals and online books, provides the bulk of the English data.
+
+~~Approximately 21M~~  file size is way too big, so only upload 50000
 
 collected from [here](https://huggingface.co/datasets/HiTZ/Multilingual-Medical-Corpus)
 
