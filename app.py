@@ -5,6 +5,10 @@ from langchain_pinecone import PineconeVectorStore, PineconeEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFacePipeline
+
+from local_hf import READER_LLM
+
 
 from dotenv import load_dotenv
 
@@ -17,6 +21,8 @@ llm = ChatOpenAI(
     timeout=None,
     max_retries=2,
 )
+
+hf_llm = HuggingFacePipeline(pipeline=READER_LLM)
 
 
 async def get_answer_multilingual_e5(query: str) -> str:
