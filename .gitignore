@@ -164,3 +164,9 @@ cython_debug/
 rag-prototype-cody-debbie-andre/.api-key
 rag-prototype-cody-debbie-andre/.conda/
 rag-prototype-cody-debbie-andre/legacy/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Misc
+.DS_Store
