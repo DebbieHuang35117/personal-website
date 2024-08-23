@@ -2,7 +2,7 @@ from transformers import pipeline
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
-READER_MODEL_NAME = "Qwen/Qwen2-1.5B-Instruct"
+READER_MODEL_NAME = "microsoft/Phi-3.5-mini-instruct"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
