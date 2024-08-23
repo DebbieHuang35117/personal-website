@@ -23,6 +23,3 @@ RUN python3 -m pip install -r requirements.txt
 
 # Set the working directory
 WORKDIR /app
-
-# Set the entrypoint
-ENTRYPOINT [ "python-torch-gpu" ]

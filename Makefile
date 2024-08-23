@@ -3,7 +3,10 @@ all: build dev
 build:
 	docker build -t pytorch-gpu . -f Dockerfile
 dev:
-	docker run --name pytorch-container --gpus all -it --rm -v $(pwd):/app pytorch-gpu
+	docker run --name pytorch-container --gpus all -it --rm -v $(shell pwd):/app pytorch-gpu
 stop:
 	docker kill pytorch-container
+
+clean:
+	docker rmi pytorch-gpu
 
