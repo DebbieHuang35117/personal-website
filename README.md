@@ -32,3 +32,23 @@ To host the streamlit chat app locally, run `streamlit run ./app.py `
 ## Example
 
 You could ask the question `請跟我介紹台灣的歷史` and observe the different answers.
+
+## Docker Development
+
+### Install nvidia-cuda-toolkit
+
+Install `nvidia-cuda-toolkit`, follow the instructions from [nvidia](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)
+
+> Note: we use cuda==12.4 in this project
+
+### Install nvidia-container-toolkit
+
+To install `nvidia-container-toolkit`, follow the instructions from [nvidia](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+### Verify installation
+
+To verify your installation, run the command `docker run -it --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi`
+
+### Start Docker development
+
+Run the command `make` to build and run the docker container, use `python-torch-gpu` to access pytorch with gpu support.
