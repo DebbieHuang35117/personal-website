@@ -13,12 +13,16 @@ RUN apt-get update && \
 # Upgrade pip
 RUN python3 -m pip install --upgrade pip
 
-# Install PyTorch and torchvision
+# Install PyTorch and other dependencies
 RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # Install other python packages
 COPY requirements.txt requirements.txt
 RUN python3 -m pip install -r requirements.txt
+
+# Download the model
+
+RUN huggingface-cli download Qwen/Qwen2-0.5B-Instruct
 
 # Set the working directory
 WORKDIR /app

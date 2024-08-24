@@ -2,7 +2,7 @@ from transformers import pipeline
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
-READER_MODEL_NAME = "microsoft/Phi-3.5-mini-instruct"
+READER_MODEL_NAME = "Qwen/Qwen2-0.5B-Instruct" # for demo purposes, we use a smaller model
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -13,7 +13,7 @@ bnb_config = BitsAndBytesConfig(
 model = AutoModelForCausalLM.from_pretrained(READER_MODEL_NAME, quantization_config=bnb_config)
 tokenizer = AutoTokenizer.from_pretrained(READER_MODEL_NAME)
 
-READER_LLM = pipeline(
+reader = pipeline(
     model=model,
     tokenizer=tokenizer,
     task="text-generation",
@@ -22,5 +22,4 @@ READER_LLM = pipeline(
     repetition_penalty=1.1,
     return_full_text=False,
     max_new_tokens=500,
-    device="auto",
 )

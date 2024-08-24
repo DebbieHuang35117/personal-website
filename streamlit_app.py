@@ -7,7 +7,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain_openai import OpenAIEmbeddings
 from langchain_huggingface import HuggingFacePipeline
 
-from local_hf import READER_LLM
+from local_hf import reader
 
 
 from dotenv import load_dotenv
@@ -22,7 +22,7 @@ llm = ChatOpenAI(
     max_retries=2,
 )
 
-hf_llm = HuggingFacePipeline(pipeline=READER_LLM)
+hf_llm = HuggingFacePipeline(pipeline=reader)
 
 
 async def get_answer_multilingual_e5(query: str) -> str:
