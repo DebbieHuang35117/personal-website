@@ -51,4 +51,4 @@ To verify your installation, run the command `docker run -it --gpus all nvidia/c
 
 ### Start Docker development
 
-Run the command `make` to build and run the docker container, use `python3` to access pytorch with gpu support.
+Run the command `make` to build and run the docker container. Then access streamlit application through `http://0.0.0.0:8501`.
