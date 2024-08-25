@@ -1,20 +1,27 @@
-import os
-import asyncio
+# custom code for the streamlit app
+from local_hf import reader
+
+# dependencies for streamlit and langchain
 import streamlit as st
+from streamlit_feedback import streamlit_feedback
 from langchain_pinecone import PineconeVectorStore, PineconeEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain_openai import OpenAIEmbeddings
 from langchain_huggingface import HuggingFacePipeline
 
-from local_hf import reader
-
-
+# dependencies for system
+import os
+import asyncio
+import os
+import time
+import datetime
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatOpenAI(
+openai_llm = ChatOpenAI(
     model="gpt-4o-mini",
     temperature=0,
     max_tokens=200,
@@ -23,6 +30,8 @@ llm = ChatOpenAI(
 )
 
 hf_llm = HuggingFacePipeline(pipeline=reader)
+
+llm = openai_llm
 
 
 async def get_answer_multilingual_e5(query: str) -> str:
@@ -64,62 +73,84 @@ async def get_answer_without_rag(query: str) -> str:
     return answer
 
 
-async def main(query: str):
-    answer_multilingual_e5 = await get_answer_multilingual_e5(query)
-    answer_text_embedding_3_large = await get_answer_text_embedding_3_large(query)
-    answer_text_embedding_3_small = await get_answer_text_embedding_3_small(query)
-    answer_without_rag = await get_answer_without_rag(query)
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-    st.write(f'Answer (multilingual-e5-large): {answer_multilingual_e5}')
-    st.write(
-        f'Answer (text-embedding-3-large): {answer_text_embedding_3_large}')
-    st.write(
-        f'Answer (text-embedding-3-small): {answer_text_embedding_3_small}')
-    st.write(f'Answer (without RAG): {answer_without_rag}')
 
-    feedback_multilingual_e5 = st.radio(
-        'Rate the answer (multilingual-e5-large)',
-        options=[i for i in range(11)],  # 0 to 10
-        index=5
+def display_answer():
+    for i in st.session_state.chat_history:
+        with st.chat_message("human"):
+            st.write(i["question"])
+        with st.chat_message("ai"):
+            st.caption(i["type"])
+            st.write(i["answer"])
+
+        # If there is no feedback show N/A
+        if "feedback" in i:
+            st.write(f"Feedback: {i['feedback']}")
+        else:
+            st.write("Feedback: N/A")
+
+
+async def create_answer(question):
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+
+    st.session_state.chat_history.append({
+        "question": question,
+        "answer": await get_answer_multilingual_e5(question),
+        "message_id": len(st.session_state.chat_history),
+        "type": "rag-multilingual_e5"
+    })
+    st.session_state.chat_history.append({
+        "question": question,
+        "answer": await get_answer_text_embedding_3_large(question),
+        "message_id": len(st.session_state.chat_history),
+        "type": "rag-text_embedding_3_large"
+    })
+    st.session_state.chat_history.append({
+        "question": question,
+        "answer": await get_answer_text_embedding_3_small(question),
+        "message_id": len(st.session_state.chat_history),
+        "type": "rag-text_embedding_3_small"
+    })
+    st.session_state.chat_history.append({
+        "question": question,
+        "answer": await get_answer_without_rag(question),
+        "message_id": len(st.session_state.chat_history),
+        "type": "vanilla"
+    })
+
+
+def store_feedback(data):
+    current_time = time.time()
+    current_time_readable = datetime.datetime.fromtimestamp(
+        current_time).strftime('%Y-%m-%d_%H:%M:%S')
+
+    filepath = os.path.join(os.path.dirname(__file__),
+                            "logs", f"{current_time_readable}-log.json")
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+
+def fbcb(message_id):
+    if message_id >= 0:
+        st.session_state.chat_history[message_id][
+            "feedback"] = st.session_state[f"fb_k_{message_id}"]
+    display_answer()
+    store_feedback(
+        st.session_state.chat_history
     )
-    feedback_text_embedding_3_large = st.radio(
-        'Rate the answer (text-embedding-3-large)',
-        options=[i for i in range(11)],  # 0 to 10
-        index=5
-    )
-    feedback_text_embedding_3_small = st.radio(
-        'Rate the answer (text-embedding-3-small)',
-        options=[i for i in range(11)],  # 0 to 10
-        index=5
-    )
-    feedback_without_rag = st.radio(
-        'Rate the answer (without RAG)',
-        options=[i for i in range(11)],  # 0 to 10
-        index=5
-    )
 
-    if st.button('Submit Feedback'):
-        st.write(
-            f'Feedback (multilingual-e5-large): {feedback_multilingual_e5}')
-        st.write(
-            f'Feedback (text-embedding-3-large): {feedback_text_embedding_3_large}')
-        st.write(
-            f'Feedback (text-embedding-3-small): {feedback_text_embedding_3_small}')
-        st.write(f'Feedback (without RAG): {feedback_without_rag}')
 
-    # create a file to store the feedback
-    with open('feedback.txt', 'a') as f:
-        f.write(
-            f'Query: {query}\nAnswer (multilingual-e5-large): {answer_multilingual_e5}\nFeedback (multilingual-e5-large): {feedback_multilingual_e5}\n\n')
-        f.write(
-            f'Query: {query}\nAnswer (text-embedding-3-large): {answer_text_embedding_3_large}\nFeedback (text-embedding-3-large): {feedback_text_embedding_3_large}\n\n')
-        f.write(
-            f'Query: {query}\nAnswer (text-embedding-3-small): {answer_text_embedding_3_small}\nFeedback (text-embedding-3-small): {feedback_text_embedding_3_small}\n\n')
-        f.write(
-            f'Query: {query}\nAnswer (without RAG): {answer_without_rag}\nFeedback (without RAG): {feedback_without_rag}\n\n')
-
-st.title('2024-sinica-medLLM-rag-prototype-chat')
-query = st.text_input('Enter your query:')
-
-if st.button('Get Answer'):
-    asyncio.run(main(query))
+async def main():
+    if question := st.chat_input(placeholder="Ask your question here .... !!!!"):
+        await create_answer(question)
+        display_answer()
+        for i, _ in enumerate(st.session_state.chat_history):
+            with st.form(f'feedback-form-{i}'):
+                streamlit_feedback(feedback_type="thumbs",
+                                   align="flex-start", key=f'fb_k_{i}')
+                st.form_submit_button('Save feedback', on_click=fbcb(i))
+asyncio.run(main())
