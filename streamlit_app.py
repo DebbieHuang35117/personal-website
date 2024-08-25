@@ -82,8 +82,7 @@ def display_answer():
         with st.chat_message("human"):
             st.write(i["question"])
         with st.chat_message("ai"):
-            st.caption(i["type"])
-            st.write(i["answer"])
+            st.write(i["answers"])
 
         # If there is no feedback show N/A
         if "feedback" in i:
@@ -96,30 +95,15 @@ async def create_answer(question):
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-
     st.session_state.chat_history.append({
         "question": question,
-        "answer": await get_answer_multilingual_e5(question),
+        "answers": {
+            "multilingual-e5": await get_answer_multilingual_e5(question),
+            "text_embedding_3_large": await get_answer_text_embedding_3_large(question),
+            "text_embedding_3_small": await get_answer_text_embedding_3_small(question),
+            "vanilla": await get_answer_without_rag(question)
+        },
         "message_id": len(st.session_state.chat_history),
-        "type": "rag-multilingual_e5"
-    })
-    st.session_state.chat_history.append({
-        "question": question,
-        "answer": await get_answer_text_embedding_3_large(question),
-        "message_id": len(st.session_state.chat_history),
-        "type": "rag-text_embedding_3_large"
-    })
-    st.session_state.chat_history.append({
-        "question": question,
-        "answer": await get_answer_text_embedding_3_small(question),
-        "message_id": len(st.session_state.chat_history),
-        "type": "rag-text_embedding_3_small"
-    })
-    st.session_state.chat_history.append({
-        "question": question,
-        "answer": await get_answer_without_rag(question),
-        "message_id": len(st.session_state.chat_history),
-        "type": "vanilla"
     })
 
 
@@ -134,10 +118,20 @@ def store_feedback(data):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 
-def fbcb(message_id):
+def fbcb():
+    message_id = len(st.session_state.chat_history) - 1
     if message_id >= 0:
-        st.session_state.chat_history[message_id][
-            "feedback"] = st.session_state[f"fb_k_{message_id}"]
+        models = [
+            "multilingual-e5",
+            "text_embedding_3_large",
+            "text_embedding_3_small",
+            "vanilla",
+        ]
+        st.session_state.chat_history[message_id]["feedback"] = {}
+        for model in models:
+            if f'fb_k_{model}' in st.session_state:
+                st.session_state.chat_history[message_id]["feedback"][
+                    model] = st.session_state[f'fb_k_{model}']
     display_answer()
     store_feedback(
         st.session_state.chat_history
@@ -151,6 +145,12 @@ async def main():
         for i, _ in enumerate(st.session_state.chat_history):
             with st.form(f'feedback-form-{i}'):
                 streamlit_feedback(feedback_type="thumbs",
-                                   align="flex-start", key=f'fb_k_{i}')
-                st.form_submit_button('Save feedback', on_click=fbcb(i))
+                                   align="flex-start", key=f'fb_k_multilingual-e5')
+                streamlit_feedback(feedback_type="thumbs",
+                                   align="flex-start", key=f'fb_k_text_embedding_3_large')
+                streamlit_feedback(feedback_type="thumbs",
+                                   align="flex-start", key=f'fb_k_text_embedding_3_small')
+                streamlit_feedback(feedback_type="thumbs",
+                                   align="flex-start", key=f'fb_k_vanilla')
+                st.form_submit_button('Save feedback', on_click=fbcb())
 asyncio.run(main())
