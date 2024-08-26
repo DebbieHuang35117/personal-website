@@ -27,7 +27,7 @@ The file `taiwan.txt` is generated from this [wiki page](https://zh.wikipedia.or
 
 ## Run the app
 
-To host the streamlit chat app locally, run `streamlit run ./app.py `
+To host the streamlit chat app locally, run `streamlit run ./streamlit_app.py `
 
 ## Example
 
