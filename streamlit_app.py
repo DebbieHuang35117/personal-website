@@ -31,7 +31,14 @@ openai_llm = ChatOpenAI(
 
 hf_llm = HuggingFacePipeline(pipeline=reader)
 
-llm = openai_llm
+llm = openai_llm  # change this to hf_llm to use huggingface pipeline
+
+rag_pipelines = [
+    "multilingual-e5",
+    "text_embedding_3_large",
+    "text_embedding_3_small",
+    "vanilla",
+]
 
 
 async def get_answer_multilingual_e5(query: str) -> str:
@@ -83,12 +90,9 @@ def display_answer():
             st.write(i["question"])
         with st.chat_message("ai"):
             st.write(i["answers"])
-
-        # If there is no feedback show N/A
         if "feedback" in i:
-            st.write(f"Feedback: {i['feedback']}")
-        else:
-            st.write("Feedback: N/A")
+            with st.chat_message(avatar="👨‍💻", name="feedback"):
+                st.write(i["feedback"])
 
 
 async def create_answer(question):
@@ -114,6 +118,10 @@ def store_feedback(data):
 
     filepath = os.path.join(os.path.dirname(__file__),
                             "logs", f"{current_time_readable}-log.json")
+    # if folder does not exist, create it
+    if not os.path.exists(os.path.dirname(filepath)):
+        os.makedirs(os.path.dirname(filepath))
+
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
@@ -121,17 +129,12 @@ def store_feedback(data):
 def fbcb():
     message_id = len(st.session_state.chat_history) - 1
     if message_id >= 0:
-        models = [
-            "multilingual-e5",
-            "text_embedding_3_large",
-            "text_embedding_3_small",
-            "vanilla",
-        ]
+
         st.session_state.chat_history[message_id]["feedback"] = {}
-        for model in models:
-            if f'fb_k_{model}' in st.session_state:
+        for pipeline in rag_pipelines:
+            if f'fb_k_{pipeline}' in st.session_state:
                 st.session_state.chat_history[message_id]["feedback"][
-                    model] = st.session_state[f'fb_k_{model}']
+                    pipeline] = st.session_state[f'fb_k_{pipeline}']
     display_answer()
     store_feedback(
         st.session_state.chat_history
@@ -142,15 +145,12 @@ async def main():
     if question := st.chat_input(placeholder="Ask your question here .... !!!!"):
         await create_answer(question)
         display_answer()
-        for i, _ in enumerate(st.session_state.chat_history):
-            with st.form(f'feedback-form-{i}'):
-                streamlit_feedback(feedback_type="thumbs",
-                                   align="flex-start", key=f'fb_k_multilingual-e5')
-                streamlit_feedback(feedback_type="thumbs",
-                                   align="flex-start", key=f'fb_k_text_embedding_3_large')
-                streamlit_feedback(feedback_type="thumbs",
-                                   align="flex-start", key=f'fb_k_text_embedding_3_small')
-                streamlit_feedback(feedback_type="thumbs",
-                                   align="flex-start", key=f'fb_k_vanilla')
-                st.form_submit_button('Save feedback', on_click=fbcb())
+        with st.form(f'feedback-form'):
+            st.header("Feedback")
+
+            for pipeline in rag_pipelines:
+                st.write(pipeline)
+                streamlit_feedback(align="flex-start", key=f'fb_k_{pipeline}', feedback_type="faces",
+                                   optional_text_label="[Optional] Please provide an explanation",)
+            st.form_submit_button('Save feedback', on_click=fbcb)
 asyncio.run(main())
