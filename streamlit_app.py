@@ -1,5 +1,6 @@
 # custom code for the streamlit app
 from local_hf import reader
+from taide_chat import taide_llm
 
 # dependencies for streamlit and langchain
 import streamlit as st
@@ -31,7 +32,7 @@ openai_llm = ChatOpenAI(
 
 hf_llm = HuggingFacePipeline(pipeline=reader)
 
-llm = openai_llm  # change this to hf_llm to use huggingface pipeline
+llm = taide_llm # change this use different LLM provider
 
 rag_pipelines = [
     "multilingual-e5",
