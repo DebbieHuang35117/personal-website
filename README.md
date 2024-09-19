@@ -9,6 +9,8 @@ You should have a `.env` file with the following fields:
 ```
 PINECONE_API_KEY=<YOUR_API_KEY>
 OPENAI_API_KEY=<YOUR_API_KEY>
+TAIDE_EMAIL=<YOUR_TAIDE_EMAIL>
+TAIDE_PASSWORD=<YOUR_TAIDE_PASSWORD>
 ```
 
 ## Setup
