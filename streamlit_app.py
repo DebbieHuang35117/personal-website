@@ -41,7 +41,6 @@ rag_pipelines = [
     "vanilla",
 ]
 
-
 async def get_answer_multilingual_e5(query: str) -> str:
     embeddings = PineconeEmbeddings(model="multilingual-e5-large")
     index_name = "sinica-rag-test-0730-multilingual-e5-large"
