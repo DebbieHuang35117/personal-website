@@ -1,5 +1,4 @@
-# FROM nvidia/cuda:12.4.0-base-ubuntu22.04
-FROM python:3.11-slim
+FROM nvidia/cuda:12.4.0-base-ubuntu22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -15,9 +14,7 @@ RUN apt-get update && \
 RUN python3 -m pip install --upgrade pip
 
 # Install PyTorch and other dependencies
-# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/mps
-
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # Install other python packages
 COPY requirements.txt requirements.txt
@@ -25,7 +22,7 @@ RUN python3 -m pip install -r requirements.txt
 
 # Download the model
 
-RUN huggingface-cli download Qwen/Qwen2-0.5B-Instruct
+# RUN huggingface-cli download Qwen/Qwen2-0.5B-Instruct
 
 # Set the working directory
 WORKDIR /app
