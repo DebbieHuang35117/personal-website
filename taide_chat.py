@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+
 host = "https://td.nchc.org.tw/api/v1"
 
 from langchain_openai import ChatOpenAI
@@ -13,7 +14,9 @@ def get_token():
     username = os.getenv("TAIDE_EMAIL")
     password = os.getenv("TAIDE_PASSWORD")
     r = requests.post(
-        host+"/token", data={"username": username, "password": password})
+        host + "/token", data={"username": username, "password": password}
+    )
+    print(r.json())
     token = r.json()["access_token"]
     return token
 

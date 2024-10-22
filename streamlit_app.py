@@ -32,7 +32,9 @@ rag_pipelines = [
     "text_embedding_3_large",
     "text_embedding_3_small",
     "vanilla",
+    "chroma",
 ]
+
 
 async def get_answer_multilingual_e5(query: str) -> str:
     embeddings = PineconeEmbeddings(model="multilingual-e5-large")
@@ -70,6 +72,21 @@ async def get_answer_without_rag(query: str) -> str:
     return answer
 
 
+async def get_answer_chroma(query: str) -> str:
+    from rag_utils import default_embedding_model
+    from prepare_db import CHROMA_PATH
+    from langchain_chroma import Chroma
+
+    embeddings = default_embedding_model
+
+    vectorstore = Chroma(persist_directory=CHROMA_PATH, embedding_function=embeddings)
+
+    docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
+    chain = load_qa_chain(llm, chain_type="map_reduce")
+    answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
+    return answer
+
+
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -101,6 +118,7 @@ async def create_answer(question):
                     question
                 ),
                 "vanilla": await get_answer_without_rag(question),
+                "chroma": await get_answer_chroma(question),
             },
             "message_id": len(st.session_state.chat_history),
         }
