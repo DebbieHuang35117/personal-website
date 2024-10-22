@@ -3,13 +3,19 @@ all: build dev
 
 UNAME := $(shell uname)
 
-
-
 build:
 ifeq ($(UNAME), Linux)
 	docker build -t pytorch-cuda . -f Dockerfile.cuda
 else
 	docker build -t pytorch-mps . -f Dockerfile.mps
+endif
+prepare-db:
+ifeq ($(UNAME), Linux)
+	docker build -t pytorch-cuda . -f Dockerfile.cuda --target prepare
+	docker run --name pytorch-container pytorch-cuda
+else
+	docker build -t pytorch-mps . -f Dockerfile.mps --target prepare
+	docker run --name pytorch-container --rm -v $(shell pwd):/app pytorch-mps 
 endif
 dev:
 ifeq ($(UNAME), Linux)

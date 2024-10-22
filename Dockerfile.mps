@@ -1,5 +1,5 @@
 # FROM nvidia/cuda:12.4.0-base-ubuntu22.04
-FROM python:3.11-slim
+FROM python:3.11-slim AS base
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -24,14 +24,17 @@ COPY requirements.txt requirements.txt
 RUN python3 -m pip install -r requirements.txt
 
 # Download the model
-
-# RUN huggingface-cli download Qwen/Qwen2-0.5B-Instruct
-
 # Set the working directory
 WORKDIR /app
 
 EXPOSE 8501
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+FROM base AS prepare
+RUN huggingface-cli download intfloat/multilingual-e5-large
+ENTRYPOINT [ "python" , "prepare_database.py" ]
+
+FROM base AS serve
 
 ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
