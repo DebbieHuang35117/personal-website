@@ -21,6 +21,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+SEARCH_TOP_K = int(os.getenv("SEARCH_TOP_K", 5))
+
 # openai_llm = ChatOpenAI(model="gpt-4o-mini",temperature=0,max_tokens=200,timeout=None,max_retries=2)
 
 # hf_llm = HuggingFacePipeline(pipeline=reader)
@@ -29,47 +31,57 @@ llm = taide_llm  # change this use different LLM provider
 
 rag_pipelines = [
     "multilingual-e5",
-    "text_embedding_3_large",
-    "text_embedding_3_small",
     "vanilla",
     "chroma",
 ]
+
+
+def docs_to_dict(docs):
+    return [
+        {"page_content": doc.page_content, "metadata": doc.metadata} for doc in docs
+    ]
 
 
 async def get_answer_multilingual_e5(query: str) -> str:
     embeddings = PineconeEmbeddings(model="multilingual-e5-large")
     index_name = "sinica-rag-test-0730-multilingual-e5-large"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
-    docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
+    docs = await asyncio.to_thread(
+        vectorstore.similarity_search, query=query, k=SEARCH_TOP_K
+    )
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
-    return answer
+    return answer, docs_to_dict(docs)
 
 
 async def get_answer_text_embedding_3_large(query: str) -> str:
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
     index_name = "sinica-rag-test-0730-text-embedding-3-large"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
-    docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
+    docs = await asyncio.to_thread(
+        vectorstore.similarity_search, query=query, k=SEARCH_TOP_K
+    )
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
-    return answer
+    return answer, docs_to_dict(docs)
 
 
 async def get_answer_text_embedding_3_small(query: str) -> str:
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     index_name = "sinica-rag-test-0730-text-embedding-3-small"
     vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
-    docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
+    docs = await asyncio.to_thread(
+        vectorstore.similarity_search, query=query, k=SEARCH_TOP_K
+    )
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
-    return answer
+    return answer, docs_to_dict(docs)
 
 
 async def get_answer_without_rag(query: str) -> str:
     chain = load_qa_chain(llm)
     answer = await asyncio.to_thread(chain.run, input_documents=[], question=query)
-    return answer
+    return answer, []
 
 
 async def get_answer_chroma(query: str) -> str:
@@ -81,10 +93,12 @@ async def get_answer_chroma(query: str) -> str:
 
     vectorstore = Chroma(persist_directory=CHROMA_PATH, embedding_function=embeddings)
 
-    docs = await asyncio.to_thread(vectorstore.similarity_search, query=query, k=1)
+    docs = await asyncio.to_thread(
+        vectorstore.similarity_search, query=query, k=SEARCH_TOP_K
+    )
     chain = load_qa_chain(llm, chain_type="map_reduce")
     answer = await asyncio.to_thread(chain.run, input_documents=docs, question=query)
-    return answer
+    return answer, docs_to_dict(docs)
 
 
 if "chat_history" not in st.session_state:
@@ -106,21 +120,30 @@ async def create_answer(question):
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
+    e5_answer, e5_docs = await get_answer_multilingual_e5(question)
+    #text_embedding_3_large_answer, text_embedding_3_large_docs = (
+    #    await get_answer_text_embedding_3_large(question)
+    #)
+    #text_embedding_3_small_answer, text_embedding_3_small_docs = (
+    #    await get_answer_text_embedding_3_small(question)
+    #)
+    vanilla_answer, vanilla_docs = await get_answer_without_rag(question)
+    chroma_answer, chroma_docs = await get_answer_chroma(question)
+
     st.session_state.chat_history.append(
         {
             "question": question,
             "answers": {
-                "multilingual-e5": await get_answer_multilingual_e5(question),
-                "text_embedding_3_large": await get_answer_text_embedding_3_large(
-                    question
-                ),
-                "text_embedding_3_small": await get_answer_text_embedding_3_small(
-                    question
-                ),
-                "vanilla": await get_answer_without_rag(question),
-                "chroma": await get_answer_chroma(question),
+                "multilingual-e5": e5_answer,
+                "vanilla": vanilla_answer,
+                "chroma": chroma_answer,
             },
             "message_id": len(st.session_state.chat_history),
+            "docs": {
+                "multilingual-e5": e5_docs,
+                "vanilla": vanilla_docs,
+                "chroma": chroma_docs,
+            },
         }
     )
 
