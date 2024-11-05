@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SEARCH_TOP_K = int(os.getenv("SEARCH_TOP_K", 5))
+SEARCH_TOP_K = int(os.getenv("SEARCH_TOP_K", 3))
 
 # openai_llm = ChatOpenAI(model="gpt-4o-mini",temperature=0,max_tokens=200,timeout=None,max_retries=2)
 
@@ -121,12 +121,12 @@ async def create_answer(question):
         st.session_state.chat_history = []
 
     e5_answer, e5_docs = await get_answer_multilingual_e5(question)
-    #text_embedding_3_large_answer, text_embedding_3_large_docs = (
+    # text_embedding_3_large_answer, text_embedding_3_large_docs = (
     #    await get_answer_text_embedding_3_large(question)
-    #)
-    #text_embedding_3_small_answer, text_embedding_3_small_docs = (
+    # )
+    # text_embedding_3_small_answer, text_embedding_3_small_docs = (
     #    await get_answer_text_embedding_3_small(question)
-    #)
+    # )
     vanilla_answer, vanilla_docs = await get_answer_without_rag(question)
     chroma_answer, chroma_docs = await get_answer_chroma(question)
 

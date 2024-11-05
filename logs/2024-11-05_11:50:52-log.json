@@ -1,0 +1,65 @@
+[
+    {
+        "question": "請告訴我標靶治療的資訊",
+        "answers": {
+            "multilingual-e5": " 根據你提供的文件片段，並沒有包含任何與標靶治療相關的具體資訊。因此，我無法從這段文字中提取與標靶治療有關的訊息。標靶治療是癌症治療的一種方法，用於針對癌細胞的特定分子特徵進行攻擊。這種療法利用人體內正常組織的特性來識別和破壞癌細胞，從而達到消滅腫瘤的目的。常見的標靶治療藥物靶向EGFR（表皮生長因子受體）、HER2（人乳頭瘤病毒相關表現物）、BRAF（黑色素瘤相關突變）和ALK（激酶重排）等異常蛋白質。由於這些藥物只針對癌細胞，而不會傷害到正常細胞，因此被認為是比傳統化療更安全的治療方法。然而，本文所提及的食物選擇並無法直接涉及或應用於標靶治療的過程或策略。如果你想了解更多關於標靶治療的詳細資訊，建議你查閱醫療專業文獻",
+            "vanilla": " 標靶治療是癌症治療的一種方式，它針對的是特定分子或細胞過程，進而破壞癌細胞的生長與擴散。由於這些標靶點在正常細胞中也可能被抑制，因此副作用通常比傳統化學療法小。\n\n目前許多標靶治療藥物已獲批准用於臨床應用，如：\n1. 酪氨酸激酶抑制劑（Tyrosine Kinase Inhibitors, TKIs）：這類藥物會阻斷癌細胞中的酪氨酸激酶活性，從而抑制細胞增殖和血管生成。常見例子有伊馬替尼（Imatinib）、達沙替尼（Daunorubicin）和吉非替尼（Gefitinib）等。\n2. 單克隆抗體（Monoclonal Antibodies）：這類藥物可辨識並結合至特定癌細胞表面的標記，從而殺死癌細胞或阻止",
+            "chroma": " 根據你所提供的文獻摘錄，標靶治療在大腸直腸癌的治療中可能扮演一角。雖然文本中並未詳細說明大腸直腸癌標靶治療的具體細節，但以下幾點可作為初步認識：\n\n1. 標靶治療是一種針對特定分子機制的癌症治療方法，利用阻斷關鍵信號通路來破壞癌細胞生長和擴散。在標靶治療中，藥物通常被設計成與癌細胞表面或內部的特定分子結合，從而達到殺死癌細胞或阻止其增殖的目的。\n2. 在大腸直腸癌的治療中，標靶治療常用於輔助性療法，即在手術、放療、化療等主要治療方式之外，為提高患者存活率和改善生活品質而額外使用的治療方法。\n3. 目前，有幾種標靶藥物可用於治療大腸直腸癌，如抗血管生成藥物（"
+        },
+        "message_id": 0,
+        "docs": {
+            "multilingual-e5": [
+                {
+                    "page_content": "I 7/30 Breakfast: soy milk",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/30 Lunch: roast meat",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/25 Dinner: beef noodles",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                }
+            ],
+            "vanilla": [],
+            "chroma": [
+                {
+                    "page_content": "您後續處理。\n \n四、參考資料：\n1. 許祤歆、林靖芸  (2020) ．提升入住碘 131 隔離病⼈之入院照護指導滿意度及完整性．新臺北護理期刊， 22 (1) ， 85-\n96。https://doi.org/10.6540/NTJN.202003 22(1).0008\n2. Asma , A. H., Anjali , J ., Alok , K. M., ＆  Samir , H. (2022). Evaluation of diagnostic value of SPECT/CT  imaging",
+                    "metadata": {
+                        "page": 0,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/核醫碘-131癌症清除治療 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 961
+                    }
+                },
+                {
+                    "page_content": "B. 在製作裝置的過程，若您有任何不適，請您立即向我們的放射師反映，不要忍耐。\n \nC. 若您的⾏動不⽅便或體⼒比較不好，只要您能安靜的平躺在治療床上，治療的效果也不會受到影響。\n \n2. 畫定位輔助線：\n在進⾏定位前，為了定位上的需要，須將治療部位附近的衣物脫除；我們會在您的⾝上以雷射定位，標上⼀些定位\n的輔助線，並且會⽤紙膠將這些定位線保護起來。返家後，也請您儘量維持這些定位線的完整性。若不⼩⼼紙膠脫\n落或線變得不清楚，先不⽤緊張，請在回診時告知主治醫師或放射師，我們會為您處理。\n \n3. 電腦斷層掃描：",
+                    "metadata": {
+                        "page": 1,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/肺癌病人放射線治療之衛教 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 4
+                    }
+                },
+                {
+                    "page_content": "八、參考資料\n1. 林玲⽟（ 2020 ）．⼤腸直腸癌藥物治療新趨勢．彰基醫療健康防治季刊， 39 ， 21-24 。\n2. 曾斐祺（ 2020 ）．⼤腸直腸癌的治療與照護．腫瘤護理雜誌， 20(2) ， 5-9 。https://doi.org/10.6880/TJON .\n202012_20(2).01\n3. 衛⽣福利部國⺠健康署 (2022 ， 8 ⽉ 29 ⽇ ) ．⼤腸癌防治概況。 https://www .hpa.gov .tw/Pages/Detail.aspx?\nnodeid=615&pid=1 126",
+                    "metadata": {
+                        "page": 2,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識大腸直腸癌 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 562
+                    }
+                }
+            ]
+        },
+        "feedback": {
+            "multilingual-e5": null,
+            "vanilla": null,
+            "chroma": null
+        }
+    }
+]
