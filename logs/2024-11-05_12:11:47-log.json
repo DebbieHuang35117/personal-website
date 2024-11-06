@@ -1,0 +1,215 @@
+[
+    {
+        "question": "請告訴我標靶治療的資訊",
+        "answers": {
+            "multilingual-e5": " 根據你提供的文件片段，並沒有包含任何與標靶治療相關的具體資訊。因此，我無法從這段文字中提取與標靶治療有關的訊息。標靶治療是癌症治療的一種方法，用於針對癌細胞的特定分子特徵進行攻擊。這種療法利用人體內正常組織的特性來識別和破壞癌細胞，從而達到消滅腫瘤的目的。常見的標靶治療藥物靶向EGFR（表皮生長因子受體）、HER2（人乳頭瘤病毒相關表現物）、BRAF（黑色素瘤相關突變）和ALK（激酶重排）等異常蛋白質。由於這些藥物只針對癌細胞，而不會傷害到正常細胞，因此被認為是比傳統化療更安全的治療方法。然而，本文所提及的食物選擇並無法直接涉及或應用於標靶治療的過程或策略。如果你想了解更多關於標靶治療的詳細資訊，建議你查閱醫療專業文獻",
+            "vanilla": " 標靶治療是癌症治療的一種方式，它針對的是特定分子或細胞過程，進而破壞癌細胞的生長與擴散。由於這些標靶點在正常細胞中也可能被抑制，因此副作用通常比傳統化學療法小。\n\n目前許多標靶治療藥物已獲批准用於臨床應用，如：\n1. 酪氨酸激酶抑制劑（Tyrosine Kinase Inhibitors, TKIs）：這類藥物會阻斷癌細胞中的酪氨酸激酶活性，從而抑制細胞增殖和血管生成。常見例子有伊馬替尼（Imatinib）、達沙替尼（Daunorubicin）和吉非替尼（Gefitinib）等。\n2. 單克隆抗體（Monoclonal Antibodies）：這類藥物可辨識並結合至特定癌細胞表面的標記，從而殺死癌細胞或阻止",
+            "chroma": " 根據你所提供的文獻摘錄，標靶治療在大腸直腸癌的治療中可能扮演一角。雖然文本中並未詳細說明大腸直腸癌標靶治療的具體細節，但以下幾點可作為初步認識：\n\n1. 標靶治療是一種針對特定分子機制的癌症治療方法，利用阻斷關鍵信號通路來破壞癌細胞生長和擴散。在標靶治療中，藥物通常被設計成與癌細胞表面或內部的特定分子結合，從而達到殺死癌細胞或阻止其增殖的目的。\n2. 在大腸直腸癌的治療中，標靶治療常用於輔助性療法，即在手術、放療、化療等主要治療方式之外，為提高患者存活率和改善生活品質而額外使用的治療方法。\n3. 目前，有幾種標靶藥物可用於治療大腸直腸癌，如抗血管生成藥物（"
+        },
+        "message_id": 0,
+        "docs": {
+            "multilingual-e5": [
+                {
+                    "page_content": "I 7/30 Breakfast: soy milk",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/30 Lunch: roast meat",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/25 Dinner: beef noodles",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                }
+            ],
+            "vanilla": [],
+            "chroma": [
+                {
+                    "page_content": "您後續處理。\n \n四、參考資料：\n1. 許祤歆、林靖芸  (2020) ．提升入住碘 131 隔離病⼈之入院照護指導滿意度及完整性．新臺北護理期刊， 22 (1) ， 85-\n96。https://doi.org/10.6540/NTJN.202003 22(1).0008\n2. Asma , A. H., Anjali , J ., Alok , K. M., ＆  Samir , H. (2022). Evaluation of diagnostic value of SPECT/CT  imaging",
+                    "metadata": {
+                        "page": 0,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/核醫碘-131癌症清除治療 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 961
+                    }
+                },
+                {
+                    "page_content": "B. 在製作裝置的過程，若您有任何不適，請您立即向我們的放射師反映，不要忍耐。\n \nC. 若您的⾏動不⽅便或體⼒比較不好，只要您能安靜的平躺在治療床上，治療的效果也不會受到影響。\n \n2. 畫定位輔助線：\n在進⾏定位前，為了定位上的需要，須將治療部位附近的衣物脫除；我們會在您的⾝上以雷射定位，標上⼀些定位\n的輔助線，並且會⽤紙膠將這些定位線保護起來。返家後，也請您儘量維持這些定位線的完整性。若不⼩⼼紙膠脫\n落或線變得不清楚，先不⽤緊張，請在回診時告知主治醫師或放射師，我們會為您處理。\n \n3. 電腦斷層掃描：",
+                    "metadata": {
+                        "page": 1,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/肺癌病人放射線治療之衛教 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 4
+                    }
+                },
+                {
+                    "page_content": "八、參考資料\n1. 林玲⽟（ 2020 ）．⼤腸直腸癌藥物治療新趨勢．彰基醫療健康防治季刊， 39 ， 21-24 。\n2. 曾斐祺（ 2020 ）．⼤腸直腸癌的治療與照護．腫瘤護理雜誌， 20(2) ， 5-9 。https://doi.org/10.6880/TJON .\n202012_20(2).01\n3. 衛⽣福利部國⺠健康署 (2022 ， 8 ⽉ 29 ⽇ ) ．⼤腸癌防治概況。 https://www .hpa.gov .tw/Pages/Detail.aspx?\nnodeid=615&pid=1 126",
+                    "metadata": {
+                        "page": 2,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識大腸直腸癌 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 562
+                    }
+                }
+            ]
+        },
+        "feedback": {
+            "multilingual-e5": null,
+            "vanilla": null,
+            "chroma": null
+        }
+    },
+    {
+        "question": "請告訴我使用標靶有可能有什麼不適症狀",
+        "answers": {
+            "multilingual-e5": " 根據你提供的文件片段，並沒有直接相關的文字提及使用標靶治療的副作用或不適症狀。在所提的筆記中，雖然有提到與標靶治療相關的食物攝取和禁忌（如：I 7/30 Lunch: roast meat），但這些內容並非針對標靶治療的不良反應或不適症狀進行描述。因此，我無法根據你提供的文本內容來回答關於標靶治療副作用或不適症狀的問題。\n\n若你能提供更多相關內容或詳細說明你的問題，我會盡力為你找到你想要的資訊。 ",
+            "vanilla": " 根據所提供的上下文，我無法確定使用者所指的「標靶」是否為特定事物或概念。因此，我不能針對「標靶」可能產生的不適症狀提供具體答案。\n如果這個詞彙對您來說太籠統了，請提供更多上下文或相關背景資訊，我會盡力幫助您解答疑問。 ",
+            "chroma": " 根據你所提取的文件內容，標靶治療相關的不適症狀包括：\n\n1. 疲勞（Fatigue）: 標靶治療常會導致持續性的疲勞，這可能影響日常活動和生活品質。\n2. 噁心和嘔吐（Nausea and Vomiting）: 雖然較常見於化療，但標靶藥物也可能引起噁心和嘔吐的不適感。\n3. 皮膚疹或紅疹（Rash）: 少數患者可能會對標靶藥物產生過敏反應，表現為皮膚疹或紅疹。\n4. 腹瀉（Diarrhea）和腹痛（Abdominal Pain）: 標靶治療可導致腸胃道症狀，如腹瀉和腹痛。\n5. 發燒（Fever）: 有些標靶藥物會引發輕微的發燒反應。\n6. 肌肉疼痛（Muscle P"
+        },
+        "message_id": 1,
+        "docs": {
+            "multilingual-e5": [
+                {
+                    "page_content": "I 7/30 Lunch: roast meat",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/30 Breakfast: soy milk",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/28 Dinner: Korean fried chicken",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                }
+            ],
+            "vanilla": [],
+            "chroma": [
+                {
+                    "page_content": "簡易測驗\n讓我們來進⾏測驗，以確認您已充分了解\n1.⼿⿇⿇或刺刺的，可能跟我正在接受神經毒性的化學治療有關係。\n  \n2.常⾒的異常運動神經症狀包含 : 肌⾁無⼒或是容易抽筋。\n  \n3.有異常神經症狀就代表我的疾病復發了。\n  \n4.神經異常症狀會持續⼀陣⼦，通常治療結束後會慢慢改善。\n  \n5.當異常神經症狀發⽣時，我要主動告知醫護⼈員。\n  \n評語\n    是否不知道\n是否不知道\n是否不知道\n是否不知道\n是否不知道",
+                    "metadata": {
+                        "page": 3,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識化學治療相關周邊神經病變 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 1747
+                    }
+                },
+                {
+                    "page_content": "Survivors of Adult Cancers: ASCO Guideline Update. Journal of Clinical Oncology: of ficial journal of the American\nSociety of Clinical Oncology , 38(28), 3325–3348. https://doi.org/10.1200/JCO.20.01399\n簡易測驗\n讓我們來進⾏測驗，以確認您已充分了解\n1.⼿⿇⿇或刺刺的，可能跟我正在接受神經毒性的化學治療有關係。\n  \n2.常⾒的異常運動神經症狀包含 : 肌⾁無⼒或是容易抽筋。",
+                    "metadata": {
+                        "page": 3,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識化學治療相關周邊神經病變 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 1545
+                    }
+                },
+                {
+                    "page_content": "簡易測驗\n讓我們來進⾏測驗，以確認您已充分了解\n1.檢查後隨時注意砂袋是否移位或脫落，若穿刺部位有濕粘或⿇⽊冰冷的感覺時，應立即通知護理師。\n  是否不知道",
+                    "metadata": {
+                        "page": 1,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識肝動脈栓塞 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 1371
+                    }
+                }
+            ]
+        },
+        "feedback": {
+            "multilingual-e5": {
+                "type": "faces",
+                "score": "😞",
+                "text": null
+            },
+            "vanilla": {
+                "type": "faces",
+                "score": "🙂",
+                "text": null
+            },
+            "chroma": {
+                "type": "faces",
+                "score": "🙂",
+                "text": null
+            }
+        }
+    },
+    {
+        "question": "請告訴我大腸癌的資訊\n\n",
+        "answers": {
+            "multilingual-e5": " 根據你所提供的文件片段，我未能找到任何與大腸癌直接相關的句子。因此，我無法從這段文字中提取任何與大腸癌相關的資訊來回答你的問題。\n\n為了能更準確地回答你的問題，請提供更多與大腸癌相關的文本或詢問更具體的問題。若你能提供更完整的相關文件供我參考，我會盡力協助你了解大腸癌的相關知識。 ",
+            "vanilla": " 根據給定的上下文，我將提供有關結腸癌（大腸癌）的資訊。\n\n結腸癌是起源於結腸的癌症，通常始於結腸內膜細胞。它可分為多種亞型，其中最常見的為腺癌和基底細胞癌。結腸癌的發病機制尚不清楚，但與飲食、生活方式、遺傳和環境因素都有關。\n\n結腸癌的症狀包括腹部腫脹、腹痛、便血、糞便變細或形狀異常、排便習慣改變等。然而，許多結腸癌患者在疾病晚期才被診斷出，因為結腸癌的早期症狀與其他消化系統疾病相似，容易被誤診。\n\n目前對於結腸癌的治療方法取決於腫瘤的分期和患者的身體狀況。治療方法包括手術、化療、放療、靶向治療等。雖然結腸癌在已開發國家中仍",
+            "chroma": " 根據你所提的問題，我已搜尋了相關的文字。以下是與大腸癌手術形式、治療和預後相關的部分：\n4. 大腸直腸癌的手術形式包括：傳統剖腹手術、微創腹腔鏡手術或結腸造口手術及達文西機械手臂輔助手術等。\n5. 抽血檢測腫瘤標記（CEA）是用來幫助評估預後和偵測術後是否復發的參考。\n這些段落提供了有關大腸癌的手術方式、診斷指標和醫院資訊。如果這符合你的問題，請告訴我你要哪一部分的詳細資訊，或者如果你需要更多關於大腸癌的資訊，我可以提供更多相關內容。\n由於你提供的材料中並沒有包含任何與大腸癌症狀、風險因素或預防措施等相關的具體資訊，因此我無法根據這段文字來回答你的問題。如果你有任何關於大腸癌的具體疑問，請提出更"
+        },
+        "message_id": 2,
+        "docs": {
+            "multilingual-e5": [
+                {
+                    "page_content": "I 7/30 Lunch: roast meat",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/25 Dinner: beef noodles",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                },
+                {
+                    "page_content": "I 7/22 Lunch: lunch box",
+                    "metadata": {
+                        "source": "../textdata/text.txt"
+                    }
+                }
+            ],
+            "vanilla": [],
+            "chroma": [
+                {
+                    "page_content": "臺中榮⺠總醫院護理衛教\n認識⼤腸直腸癌列印⽇期  : 2024/09/16\n護理衛教 / ⽬錄總覽 / ⼤腸直腸科\n制訂⽇期 : 2006-12-12, 最近修訂 : 2024-02-18, 編號: CRS-002\n【學習重點】\n1.  大腸直腸癌高危險因子與 飲食、肥胖或少運動、 年齡、基因、抽菸、喝酒、大腸癌家族病史等有關。\n2. 抽⾎檢測腫瘤標記（ CEA ）⽤來幫助評估預後和偵測術後是否復發的參考。\n3. ⼤腸直腸癌，治療早期仍以外科⼿術為主，配合後續如放射線、標靶或化學治療等，持續定期追蹤，提升存活率。\n \nㄧ、前⾔",
+                    "metadata": {
+                        "page": 0,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識大腸直腸癌 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 0
+                    }
+                },
+                {
+                    "page_content": "4.⼤腸直腸癌⼿術形式包括：傳統剖腹⼿術、微創腹腔鏡⼿術或腸造⼝⼿術及達文⻄機械⼿臂輔助⼿術等。\n  \n5.抽⾎檢測腫瘤標記（ CEA ）是⽤來幫助評估預後和偵測術後是否復發的參考。\n  \n評語\n    是否不知道\n是否不知道\n是否不知道\n臺中榮⺠總醫院\n407219臺中市⻄屯區臺灣⼤道四段 1650 號\n總機： (04)2359-2525\n全⼈智慧  醫療典範\n愛⼼品質  創新當責\n本站內容為臺中榮⺠總醫院所有，未經允許請勿任意轉載ヽ複製或做商業⽤途\n臺中榮⺠總醫院護理部  著作權所有",
+                    "metadata": {
+                        "page": 3,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識大腸直腸癌 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 3
+                    }
+                },
+                {
+                    "page_content": "認識⼤腸直腸癌簡易測驗\n讓我們來進⾏測驗，以確認您已充分了解\n1.⼤腸直腸癌⾼危險因⼦，飲食包含 : 熱狗、燻⾁或其他加⼯⾁類、⼤量紅⾁（⼤於 500 克 / 週）。\n  \n2.⼤便潛⾎反應檢查最常⽤於初步篩檢，如果⼤便潛⾎檢查有反應，應再進⼀步檢查。\n  \n3.⼤腸直腸癌⼿術切除後就不必要定期追蹤檢查。是否不知道\n是否不知道",
+                    "metadata": {
+                        "page": 2,
+                        "source": "/Users/namwoam/rep/rag-prototype/dataset/med-info/認識大腸直腸癌 _ 臺中榮民總醫院護理衛教.pdf",
+                        "start_index": 1019
+                    }
+                }
+            ]
+        },
+        "feedback": {
+            "multilingual-e5": {
+                "type": "faces",
+                "score": "😀",
+                "text": null
+            },
+            "vanilla": {
+                "type": "faces",
+                "score": "😀",
+                "text": null
+            },
+            "chroma": {
+                "type": "faces",
+                "score": "😀",
+                "text": null
+            }
+        }
+    }
+]
