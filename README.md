@@ -5,7 +5,6 @@ This is a demonstration proof-of-concept for the sinica-medLLM project
 ## API KEY(s)
 
 You should have a `.env` file with the following fields:
-
 ```
 PINECONE_API_KEY=<YOUR_API_KEY>
 OPENAI_API_KEY=<YOUR_API_KEY>

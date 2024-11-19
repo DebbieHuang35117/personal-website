@@ -25,6 +25,7 @@ RUN pip3 install torch torchvision torchaudio --extra-index-url https://download
 RUN pip3 install -r ./requirements.txt
 
 # Download the model
+RUN huggingface-cli download intfloat/multilingual-e5-large
 # Set the working directory
 
 WORKDIR /app
@@ -34,7 +35,6 @@ EXPOSE 8501
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
 FROM base AS prepare
-RUN huggingface-cli download intfloat/multilingual-e5-large
 ENTRYPOINT [ "python" , "prepare_database.py" ]
 
 FROM base AS dev

@@ -29,11 +29,7 @@ SEARCH_TOP_K = int(os.getenv("SEARCH_TOP_K", 3))
 
 llm = taide_llm  # change this use different LLM provider
 
-rag_pipelines = [
-    "multilingual-e5",
-    "vanilla",
-    "chroma",
-]
+rag_pipelines = ["without-rag", "rag"]
 
 
 def docs_to_dict(docs):
@@ -120,7 +116,7 @@ async def create_answer(question):
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    e5_answer, e5_docs = await get_answer_multilingual_e5(question)
+    # e5_answer, e5_docs = await get_answer_multilingual_e5(question)
     # text_embedding_3_large_answer, text_embedding_3_large_docs = (
     #    await get_answer_text_embedding_3_large(question)
     # )
@@ -134,15 +130,13 @@ async def create_answer(question):
         {
             "question": question,
             "answers": {
-                "multilingual-e5": e5_answer,
-                "vanilla": vanilla_answer,
-                "chroma": chroma_answer,
+                "without-rag": vanilla_answer,
+                "rag": chroma_answer,
             },
             "message_id": len(st.session_state.chat_history),
             "docs": {
-                "multilingual-e5": e5_docs,
-                "vanilla": vanilla_docs,
-                "chroma": chroma_docs,
+                "without-rag": vanilla_docs,
+                "rag": chroma_docs,
             },
         }
     )
